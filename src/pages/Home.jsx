@@ -1,7 +1,31 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export default function Home() {
+const products = [
+  {
+    id: 1,
+    name: "ETR Machine A",
+    price: 35000,
+    image:
+      "https://silkroom.odoo.com/web/image/product.product/11768/image_1920?unique=acb0aed",
+  },
+  {
+    id: 2,
+    name: "ETR Machine B",
+    price: 36000,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3YeeRFTUClnu0GtVjB00CPWuX9bx8AUVX8g&s",
+  },
+  {
+    id: 3,
+    name: "POS System X",
+    price: 45000,
+    image:
+      "https://www.posiflow.in/cdn/shop/files/WhatsAppImage2024-10-16at17.27.56_1_1500x.jpg?v=1729081654",
+  },
+];
+
+function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
@@ -25,21 +49,19 @@ export default function Home() {
           Featured Products
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {[1, 2, 3].map((item) => (
+          {products.map((product) => (
             <Card
-              key={item}
+              key={product.id}
               className="shadow-lg hover:scale-105 transition-transform"
             >
               <img
-                src={`/images/product${item}.jpg`}
-                alt="Product"
-                className="rounded-t-lg"
+                src={product.image}
+                alt={product.name}
+                className="rounded-t-lg h-48 w-full object-cover"
               />
-              <CardContent className="p-4">
-                <h3 className="font-semibold text-lg">
-                  ETR Machine Model {item}
-                </h3>
-                <p className="text-gray-600 mt-2">KES 35,000</p>
+              <CardContent className="p-4 flex flex-col justify-between h-full">
+                <h3 className="font-semibold text-lg">{product.name}</h3>
+                <p className="text-gray-600 mt-2">KES{product.price}</p>
                 <Button className="mt-4 w-full">View Details</Button>
               </CardContent>
             </Card>
@@ -49,3 +71,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home
