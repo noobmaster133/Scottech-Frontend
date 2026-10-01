@@ -1,59 +1,71 @@
-import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
-import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { useState } from "react";
+import { Phone } from "lucide-react";
+import { categories, products } from "@/data/products";
+import SpotlightCard from "@/components/SpotlightCard";
 
-function Products() {
-  const [products, setProducts] = useState([]);
+export default function Products() {
+  const [active, setActive] = useState("all");
 
-  useEffect(() => {
-    // Replace this with Flask API endpoint
-    fetch("http://127.0.0.1:5000/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch(() => {
-        // fallback data for now
-        setProducts([
-          {
-            id: 1,
-            name: "Datecs DP-25 ETR Machine",
-            category: "ETR",
-            price: 35000,
-            image:
-              "https://i.ytimg.com/vi/U6nqL2e7_Aw/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgVyhHMA8=&rs=AOn4CLD_54XWRfFk3CkDZX2TxOlUZoxdVw",
-          },
-          {
-            id: 2,
-            name: "Sunmi V2 POS System",
-            category: "POS",
-            price: 42000,
-            image:
-              "https://www.srkinnovations.com/cdn/shop/files/1_1_18f16911-cb71-4643-8ccd-c842cbd55087_2048x.jpg?v=1737905484",
-          },
-          {
-            id: 3,
-            name: "Daisy Expert SX",
-            category: "ETR",
-            price: 38000,
-            image:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_weTQ2r4UyfeqVr6tu92MrfUVqwDFvGvm1A&s",
-          },
-        ]);
-      });
-  }, []);
+  const shown = active === "all" ? products : products.filter((p) => p.category === active);
 
   return (
-    <div className="px-6 py-10">
-      <h2 className="text-3xl font-semibold text-center mb-8 text-blue-900">
-        Our Products
-      </h2>
+    <div className="mx-auto max-w-6xl px-6 py-14">
+      <h1 className="font-display text-3xl font-semibold">Devices</h1>
+      <p className="mt-2 max-w-xl text-muted-foreground">
+        eTIMS, ETR, POS and printer devices we stock and install. Call for current pricing and stock.
+      </p>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+      <div className="mt-8 flex flex-wrap gap-2">
+        <button
+          onClick={() => setActive("all")}
+          className={`rounded-md px-4 py-2 text-sm font-medium ${
+            active === "all" ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground"
+          }`}
+        >
+          All devices
+        </button>
+        {categories.map((c) => (
+          <button
+            key={c.id}
+            onClick={() => setActive(c.id)}
+            className={`rounded-md px-4 py-2 text-sm font-medium ${
+              active === c.id ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground"
+            }`}
+          >
+            {c.label}
+          </button>
         ))}
+      </div>
+
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {shown.map((p) => (
+          <SpotlightCard key={p.id} className="flex flex-col rounded-lg border border-border p-5">
+            <p className="font-display font-semibold">{p.name}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
+            <dl className="mt-4 space-y-1 border-t border-border pt-3 font-mono text-xs text-muted-foreground">
+              {p.spec.map(([k, v]) => (
+                <div key={k} className="flex justify-between gap-3">
+                  <dt>{k}</dt>
+                  <dd className="text-right text-foreground">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <a
+              href="tel:0724725676"
+              className="relative z-10 mt-4 inline-flex items-center justify-center gap-2 rounded-md border border-border py-2 text-sm font-medium hover:bg-secondary"
+            >
+              <Phone className="h-3.5 w-3.5" />
+              Ask about this device
+            </a>
+          </SpotlightCard>
+        ))}
+      </div>
+
+      <div className="mt-14 rounded-lg border border-border bg-secondary/50 p-6 text-sm text-muted-foreground">
+        Don't see what you need? We also supply general computer stationery and can
+        source specific fiscal or POS hardware on request —{" "}
+        <a href="tel:0724725676" className="font-medium text-signal">call 0724 725 676</a>.
       </div>
     </div>
   );
 }
-export default Products
