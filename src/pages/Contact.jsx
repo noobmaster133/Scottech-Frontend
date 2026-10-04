@@ -14,14 +14,20 @@ export default function Contact() {
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <div className="space-y-5">
-          <SpotlightCard className="rounded-lg border border-border">
-            <a href={business.phoneHref} className="flex items-center gap-4 p-5">
-              <Phone className="h-5 w-5 text-signal" />
+          <SpotlightCard className="rounded-lg border border-border p-5">
+            <div className="flex items-start gap-4">
+              <Phone className="mt-0.5 h-5 w-5 shrink-0 text-signal" />
               <div>
-                <p className="font-medium">{business.phone}</p>
                 <p className="text-sm text-muted-foreground">Call for quotes, stock or repairs</p>
+                <div className="mt-1 flex flex-col gap-0.5">
+                  {business.phones.map((p) => (
+                    <a key={p.href} href={p.href} className="relative z-10 font-medium hover:text-signal">
+                      {p.number}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </a>
+            </div>
           </SpotlightCard>
 
           <SpotlightCard className="rounded-lg border border-border">

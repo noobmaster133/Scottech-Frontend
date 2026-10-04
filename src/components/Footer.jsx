@@ -58,8 +58,14 @@ export default function Footer() {
               </span>
             </li>
             <li className="flex gap-2.5">
-              <Phone className="h-4 w-4 shrink-0" />
-              <a href={business.phoneHref} className="hover:text-signal">{business.phone}</a>
+              <Phone className="mt-0.5 h-4 w-4 shrink-0" />
+              <span className="flex flex-col">
+                {business.phones.map((p) => (
+                  <a key={p.href} href={p.href} className="hover:text-signal">
+                    {p.number}
+                  </a>
+                ))}
+              </span>
             </li>
             <li className="flex gap-2.5">
               <WhatsAppIcon className="h-4 w-4 shrink-0" />

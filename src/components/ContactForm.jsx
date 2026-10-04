@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { business } from "@/data/business";
 
 // Create a free form at https://formspree.io, then paste your form ID here.
 // Dashboard -> your form -> "Integration" tab shows a URL like
@@ -100,7 +101,7 @@ export default function ContactForm() {
 
       {status === "error" && (
         <p className="text-sm text-red-600">
-          Couldn't send that — call 0724 725 676 or email scottech02@gmail.com instead.
+          Couldn't send that — call {business.phone} or email {business.email} instead.
         </p>
       )}
     </form>

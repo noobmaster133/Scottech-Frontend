@@ -45,8 +45,14 @@ export default function About() {
           {business.addressLines.join(", ")}.
         </p>
         <p className="mt-1 text-primary-foreground/70">
-          Open {business.hours} ({business.hoursNote}). Call ahead on {business.phone} if
-          you're bringing in a repair.
+          Open {business.hours} ({business.hoursNote}). Call ahead on{" "}
+          {business.phones.map((p, i) => (
+            <span key={p.href}>
+              {i > 0 && (i === business.phones.length - 1 ? " or " : ", ")}
+              {p.number}
+            </span>
+          ))}{" "}
+          if you're bringing in a repair.
         </p>
       </div>
     </div>
