@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Phone } from "lucide-react";
 import { categories, products } from "@/data/products";
 import SpotlightCard from "@/components/SpotlightCard";
+import ProductImage from "@/components/ProductImage";
 
 export default function Products() {
   const [active, setActive] = useState("all");
@@ -40,6 +41,7 @@ export default function Products() {
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((p) => (
           <SpotlightCard key={p.id} className="flex flex-col rounded-lg border border-border p-5">
+            <ProductImage src={p.image} alt={p.name} className="mb-4 aspect-[4/3] w-full" />
             <p className="font-display font-semibold">{p.name}</p>
             <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
             <dl className="mt-4 space-y-1 border-t border-border pt-3 font-mono text-xs text-muted-foreground">

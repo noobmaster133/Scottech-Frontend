@@ -1,5 +1,6 @@
 import { ShieldCheck, Wrench, MapPin } from "lucide-react";
 import SpotlightCard from "@/components/SpotlightCard";
+import { business } from "@/data/business";
 
 export default function About() {
   return (
@@ -41,10 +42,11 @@ export default function About() {
       <div className="mt-14 rounded-lg bg-primary p-8 text-primary-foreground md:p-10">
         <h2 className="font-display text-xl font-semibold">Visit the counter</h2>
         <p className="mt-2 text-primary-foreground/70">
-          Commonwealth Building, 4th Floor, Room 410, Moi Avenue (near Archives), Nairobi.
+          {business.addressLines.join(", ")}.
         </p>
         <p className="mt-1 text-primary-foreground/70">
-          Open for walk-ins — call ahead on 0724 725 676 if you're bringing in a repair.
+          Open {business.hours} ({business.hoursNote}). Call ahead on {business.phone} if
+          you're bringing in a repair.
         </p>
       </div>
     </div>

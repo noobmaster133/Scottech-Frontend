@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Clock } from "lucide-react";
 import logo from "@/assets/scottech-logo.png";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { business } from "@/data/business";
 
 export default function Footer() {
   return (
@@ -15,7 +17,7 @@ export default function Footer() {
             eTIMS, ETR and POS devices — supplied, installed and repaired in Nairobi.
           </p>
           <a
-            href="https://www.facebook.com/scottechlimited/"
+            href={business.facebook}
             target="_blank"
             rel="noreferrer"
             className="mt-4 inline-flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-signal"
@@ -45,16 +47,30 @@ export default function Footer() {
           <ul className="mt-3 space-y-2.5 text-sm text-primary-foreground/70">
             <li className="flex gap-2.5">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-              Commonwealth Building, 4th Floor, Room 410, Moi Avenue (near Archives), Nairobi
+              {business.addressLines.join(", ")}
+            </li>
+            <li className="flex gap-2.5">
+              <Clock className="mt-0.5 h-4 w-4 shrink-0" />
+              <span>
+                {business.hours}
+                <br />
+                <span className="text-primary-foreground/50">{business.hoursNote}</span>
+              </span>
             </li>
             <li className="flex gap-2.5">
               <Phone className="h-4 w-4 shrink-0" />
-              <a href="tel:0724725676" className="hover:text-signal">0724 725 676</a>
+              <a href={business.phoneHref} className="hover:text-signal">{business.phone}</a>
+            </li>
+            <li className="flex gap-2.5">
+              <WhatsAppIcon className="h-4 w-4 shrink-0" />
+              <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="hover:text-signal">
+                WhatsApp us
+              </a>
             </li>
             <li className="flex gap-2.5">
               <Mail className="h-4 w-4 shrink-0" />
-              <a href="mailto:scottech02@gmail.com" className="hover:text-signal">
-                scottech02@gmail.com
+              <a href={business.emailHref} className="hover:text-signal">
+                {business.email}
               </a>
             </li>
           </ul>

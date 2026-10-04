@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/scottech-logo.png";
 import MagneticButton from "@/components/MagneticButton";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { business } from "@/data/business";
 
 const links = [
   { to: "/", label: "Home" },
@@ -34,14 +36,26 @@ export default function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 text-sm">
-          <p>Commonwealth Building, 4th Floor, Room 410, Moi Avenue, Nairobi</p>
+          <p>
+            {business.hours}
+            <span className="text-primary-foreground/50"> · {business.hoursNote}</span>
+          </p>
           <div className="flex items-center gap-5">
-            <a href="mailto:scottech02@gmail.com" className="hover:text-signal">
-              scottech02@gmail.com
+            <a href={business.emailHref} className="hover:text-signal">
+              {business.email}
             </a>
-            <a href="tel:0724725676" className="flex items-center gap-1.5 hover:text-signal">
+            <a
+              href={business.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 hover:text-signal"
+            >
+              <WhatsAppIcon className="h-3.5 w-3.5" />
+              WhatsApp
+            </a>
+            <a href={business.phoneHref} className="flex items-center gap-1.5 hover:text-signal">
               <Phone className="h-3.5 w-3.5" />
-              0724 725 676
+              {business.phone}
             </a>
           </div>
         </div>
@@ -75,7 +89,7 @@ export default function Header() {
 
           <MagneticButton
             as="a"
-            href="tel:0724725676"
+            href={business.phoneHref}
             pull={0.25}
             className="hidden rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 md:inline-flex"
           >
@@ -83,7 +97,7 @@ export default function Header() {
           </MagneticButton>
 
           <button
-            className="md:hidden"
+            className="-mr-2 p-2 md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -109,10 +123,19 @@ export default function Header() {
               </NavLink>
             ))}
             <a
-              href="tel:0724725676"
+              href={business.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 flex items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-sm font-medium"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              WhatsApp us
+            </a>
+            <a
+              href={business.phoneHref}
               className="mt-1 rounded-md bg-primary px-3 py-2 text-center text-sm font-medium text-primary-foreground"
             >
-              Call 0724 725 676
+              Call {business.phone}
             </a>
           </nav>
         )}

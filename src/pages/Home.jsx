@@ -4,6 +4,7 @@ import { products } from "@/data/products";
 import SpotlightCard from "@/components/SpotlightCard";
 import TiltCard from "@/components/TiltCard";
 import MagneticButton from "@/components/MagneticButton";
+import ProductImage from "@/components/ProductImage";
 
 const services = [
   {
@@ -36,7 +37,7 @@ export default function Home() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center md:py-24">
           <div>
-            <h1 className="font-display text-4xl font-semibold leading-tight md:text-5xl">
+            <h1 className="font-display text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
               Fiscal devices and POS gear, sorted — and fixed when they aren't.
             </h1>
             <p className="mt-5 max-w-md text-primary-foreground/75">
@@ -69,19 +70,19 @@ export default function Home() {
               <span className="rounded bg-approved px-2 py-0.5 text-xs text-white">KRA APPROVED</span>
             </div>
             <dl className="mt-3 space-y-2 text-primary-foreground/80">
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <dt className="text-primary-foreground/50">Solution</dt>
                 <dd>eTIMS / ETR / ESD</dd>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <dt className="text-primary-foreground/50">Supplier</dt>
                 <dd>Scottech Ltd</dd>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <dt className="text-primary-foreground/50">Location</dt>
                 <dd>Moi Avenue, Nairobi</dd>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-3">
                 <dt className="text-primary-foreground/50">Repairs</dt>
                 <dd>Walk-in, Room 410</dd>
               </div>
@@ -114,6 +115,7 @@ export default function Home() {
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {products.slice(0, 3).map((p) => (
               <SpotlightCard key={p.id} className="rounded-lg border border-border bg-background p-5">
+                <ProductImage src={p.image} alt={p.name} className="mb-4 aspect-[4/3] w-full" />
                 <p className="font-display font-semibold">{p.name}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
                 <dl className="mt-4 space-y-1 border-t border-border pt-3 font-mono text-xs text-muted-foreground">

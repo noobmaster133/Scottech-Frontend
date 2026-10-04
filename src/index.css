@@ -157,3 +157,29 @@
     transform: none !important;
   }
 }
+
+/* --- Mobile / touch --- */
+
+/* Hover-only effects (spotlight, tilt glow, magnetic pull) don't fire on
+   touch, so give tappable elements their own press feedback instead. */
+@media (hover: none) {
+  .spotlight-card:active {
+    transform: scale(0.98);
+    border-color: color-mix(in oklch, var(--signal) 45%, var(--border));
+  }
+  .magnetic-btn:active {
+    transform: scale(0.96);
+  }
+}
+
+/* Prevent iOS Safari's lingering grey tap highlight on links/buttons */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keep the body from ever scrolling sideways, whatever a child does */
+html,
+body {
+  overflow-x: hidden;
+}

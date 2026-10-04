@@ -7,6 +7,7 @@ export const categories = [
 export const products = [
   {
     id: "android-cs30",
+    image: "/images/products/android-cs30.jpg",
     name: "Android POS CS30",
     category: "pos",
     tagline: "All-in-one Android terminal for checkout and stock",
@@ -18,6 +19,7 @@ export const products = [
   },
   {
     id: "aclas-etims",
+    image: "/images/products/aclas-etims.jpg",
     name: "Aclas eTIMS",
     category: "etims",
     tagline: "KRA-approved device for eTIMS invoicing",
@@ -29,6 +31,7 @@ export const products = [
   },
   {
     id: "comstore-pos",
+    image: "/images/products/comstore-pos.jpg",
     name: "Comstore POS",
     category: "pos",
     tagline: "Dedicated POS terminal built for daily retail counters",
@@ -40,6 +43,7 @@ export const products = [
   },
   {
     id: "thermal-58",
+    image: "/images/products/thermal-58.jpg",
     name: "58mm Thermal Bluetooth Printer",
     category: "printers",
     tagline: "Compact receipt printer for small counters and mobile sales",
@@ -51,6 +55,7 @@ export const products = [
   },
   {
     id: "thermal-80",
+    image: "/images/products/thermal-80.jpg",
     name: "80mm Thermal Bluetooth Printer",
     category: "printers",
     tagline: "Full-width receipt printer for higher-volume counters",
